@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -10,80 +9,100 @@
 <body>
 
   <header class="site-header">
-    <div class="header-logo">篠ノ井乗務区 2nd</div>
+    <div class="header-logo">
+      <span class="logo-main">篠ノ井乗務区</span>
+      <span class="logo-sub">2nd Anniversary</span>
+    </div>
     
-    <button class="hamburger" id="js-hamburger" aria-label="メニューを開く">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="hamburger-btn" id="js-hamburger" aria-label="メニューを開閉する" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+      <span class="hamburger-label">メニュー</span>
     </button>
 
-    <nav class="navigation" id="js-nav">
+    <nav class="navigation-menu" id="js-nav" aria-hidden="true">
       <ul class="menu-list">
-        <li><a href="#hero" class="text-blue">TOP</a></li>
-        <li><a href="#news" class="text-red">お知らせ / Train-News</a></li>
-        <li><a href="#ad" class="text-green">手作り広告</a></li>
-        <li><a href="#timeline" class="text-blue">2年のあゆみ</a></li>
-        <li><a href="#stamp" class="text-red">乗車印帳</a></li>
-        <li><a href="#photos" class="text-blue">写真記録</a></li>
-        <li><a href="#philosophy" class="text-blue">活動理念</a></li>
-        <li><a href="#download" class="text-yellow">連携パーツ / 配付企画</a></li>
+        <li><a href="#hero" class="nav-item nav-top">TOP</a></li>
+        <li><a href="#news" class="nav-item nav-news">お知らせ / Train-News</a></li>
+        <li><a href="#ad" class="nav-item nav-ad">手作り広告</a></li>
+        <li><a href="#timeline" class="nav-item nav-timeline">2年のあゆみ</a></li>
+        <li><a href="#stamp" class="nav-item nav-stamp">乗車印帳</a></li>
+        <li><a href="#photos" class="nav-item nav-photos">写真記録</a></li>
+        <li><a href="#philosophy" class="nav-item nav-philosophy">活動理念</a></li>
+        <li><a href="#download" class="nav-item nav-download">連携パーツ / 配布企画</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="hero" class="hero-section">
-    <div class="hero-content">
-      <h1>祝・活動2周年！</h1>
-      <p class="hero-sub">走りはじめて、2年。感謝を乗せて、次のステージへ。</p>
-    </div>
-  </section>
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <h1>祝・活動2周年</h1>
+        <p class="hero-sub">走りはじめて、2年。感謝を乗せて、次のステージへ。</p>
+      </div>
+    </section>
 
-  <section id="news" class="content-section">
-    <h2>お知らせ / Train-News</h2>
-    <p>2周年祭の開催情報や、GitHub Pages完全移設に向けた最新情報をお届けします。</p>
-  </section>
+    <section id="news" class="content-section">
+      <h2>お知らせ / Train-News</h2>
+      <div class="section-body">
+        <p>2周年祭の開催情報や、GitHub Pages完全移設に向けた最新情報をお届けします。</p>
+      </div>
+    </section>
 
-  <section id="ad" class="content-section bg-light">
-    <h2>手作り広告</h2>
-    <p>これまで制作してきた手作り広告の総集編です。</p>
-  </section>
+    <section id="ad" class="content-section bg-contrast">
+      <h2>手作り広告</h2>
+      <div class="section-body">
+        <p>これまで制作してきた手作り広告の総集編です。</p>
+      </div>
+    </section>
 
-  <section id="timeline" class="content-section">
-    <h2>2年のあゆみ</h2>
-    <div class="timeline-box">
-      <p><strong>2024年6月</strong>：公式Xアカウント開設</p>
-      <p><strong>2024年10月</strong>：旧公式サイトオープン</p>
-      <p><strong>2025年7月</strong>：新公式サイト（Google Sites）開設</p>
-      <p><strong>2025年8月</strong>：フォロワー数1,250人達成。各SNS・ラボ開設</p>
-      <p><strong>2026年1月</strong>：GitHub Pagesへのサイト移設を開始</p>
-      <p><strong>2026年6月</strong>：活動2周年記念祭を開催！</p>
-    </div>
-  </section>
+    <section id="timeline" class="content-section">
+      <h2>2年のあゆみ</h2>
+      <div class="section-body">
+        <div class="timeline-list">
+          <div class="timeline-item"><span class="time-date">2024年6月</span><span class="time-desc">公式X（旧Twitter）アカウントを開設し、情報発信を開始。</span></div>
+          <div class="timeline-item"><span class="time-date">2024年10月13日</span><span class="time-desc">旧公式サイトをオープン。</span></div>
+          <div class="timeline-item"><span class="time-date">2025年7月20日</span><span class="time-desc">新公式サイト（Google Sites）を開設。</span></div>
+          <div class="timeline-item"><span class="time-date">2025年8月</span><span class="time-desc">フォロワー数1,250人達成。各SNS・ラボ開設。</span></div>
+          <div class="timeline-item"><span class="time-date">2026年1月1日</span><span class="time-desc">GitHub Pagesへのサイト移設を開始。</span></div>
+          <div class="timeline-item main-event"><span class="time-date">2026年6月</span><span class="time-desc">おかげさまで活動2周年！</span></div>
+        </div>
+      </div>
+    </section>
 
-  <section id="stamp" class="content-section bg-light">
-    <h2>乗車印帳</h2>
-    <p>これまでの乗車印のデザイン一覧や、記念デジタルスタンプを公開。</p>
-  </section>
+    <section id="stamp" class="content-section bg-contrast">
+      <h2>乗車印帳</h2>
+      <div class="section-body">
+        <p>これまでの乗車印のデザイン一覧や、記念デジタルスタンプを公開。</p>
+      </div>
+    </section>
 
-  <section id="photos" class="content-section">
-    <h2>写真記録</h2>
-    <p>沿線で記録してきた、こだわりの鉄道写真ギャラリー。</p>
-  </section>
+    <section id="photos" class="content-section">
+      <h2>写真記録</h2>
+      <div class="section-body">
+        <p>沿線で記録してきた、こだわりの鉄道写真ギャラリー。</p>
+      </div>
+    </section>
 
-  <section id="philosophy" class="content-section bg-light">
-    <h2>活動理念</h2>
-    <p>私たちが大切にしている想いと、3年目への決意表明。</p>
-  </section>
+    <section id="philosophy" class="content-section bg-contrast">
+      <h2>活動理念</h2>
+      <div class="section-body">
+        <p>私たちが大切にしている想いと、3年目への決意表明。</p>
+      </div>
+    </section>
 
-  <section id="download" class="content-section">
-    <h2>2周年記念 配布企画</h2>
-    <div class="download-card">
-      <h3>限定デザインスマホ壁紙</h3>
-      <p>ここから記念壁紙をダウンロードできます。</p>
-      <a href="images/download/wallpaper.png" download="shasho_2nd_wallpaper.png" class="btn">ダウンロード</a>
-    </div>
-  </section>
+    <section id="download" class="content-section">
+      <h2>2周年記念 配布企画</h2>
+      <div class="section-body">
+        <div class="download-card">
+          <h3>限定デザインスマホ壁紙</h3>
+          <p>2周年を記念した特製壁紙をこちらからダウンロードいただけます。</p>
+          <a href="images/download/wallpaper.png" download="shasho_2nd_wallpaper.png" class="download-button">壁紙をダウンロード（PNG）</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <p>&copy; 2026 篠ノ井乗務区 All Rights Reserved.</p>
@@ -93,17 +112,22 @@
     document.addEventListener('DOMContentLoaded', function () {
       const hamburger = document.getElementById('js-hamburger');
       const nav = document.getElementById('js-nav');
-      const links = document.querySelectorAll('.navigation a');
+      const links = document.querySelectorAll('.navigation-menu a');
 
       hamburger.addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
         hamburger.classList.toggle('is-active');
         nav.classList.toggle('is-active');
+        nav.setAttribute('aria-hidden', expanded);
       });
 
       links.forEach(link => {
         link.addEventListener('click', function () {
           hamburger.classList.remove('is-active');
           nav.classList.remove('is-active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          nav.setAttribute('aria-hidden', 'true');
         });
       });
     });
