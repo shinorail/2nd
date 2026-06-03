@@ -165,14 +165,26 @@
     <section id="news" class="content-section">
       <h2>お知らせ / Train-News</h2>
       <div class="section-body">
-        <p>2周年祭の開催情報や、GitHub Pages完全移設に向けた最新情報をお届けします。</p>
+        <div class="feature-box" style="text-align: left; border-left: 5px solid #003366;">
+          <span style="background: #d4af37; color: #111; padding: 2px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 3px;">2026/06/01</span>
+          <h3 style="margin-top: 5px; color: #003366;">🎉 2周年記念特設サイトがオープン！</h3>
+          <p>おかげさまで篠ノ井乗務区は活動2周年を迎えました。日頃の感謝を込めて、記念ゲームや限定壁紙の配布企画を行います！</p>
+          <hr style="border: 0; border-top: 1px dashed #e0e0e0; margin: 15px 0;">
+          <span style="background: #003366; color: #fff; padding: 2px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 3px;">移設情報</span>
+          <h3 style="margin-top: 5px; color: #003366;">🚉 GitHub Pagesへの完全移設に向けて</h3>
+          <p>従来のGoogle Sitesから、より自由度の高い「GitHub Pages」への完全移設を今夏に向けて進行中です。安定した運行（サイト表示）を目指し、調整を続けてまいります。</p>
+        </div>
       </div>
     </section>
 
     <section id="ad" class="content-section bg-contrast">
       <h2>手作り広告</h2>
       <div class="section-body">
-        <p>これまで制作してきた手作り広告の総集編です。</p>
+        <p>これまで制作してきた手作り広告の総集編です。鉄道への愛とこだわりを詰め込んだ作品の数々を、2周年の歩みと共にお楽しみください。</p>
+        <div style="background: rgba(212,175,55,0.1); padding: 15px; border-radius: 8px; border: 1px solid #d4af37; margin-top: 15px;">
+          <p style="margin: 0; font-weight: bold; color: #aa8c2c;">🚏 広告ギャラリーは順次公開予定！</p>
+          <p style="margin: 5px 0 0 0; font-size: 0.9rem;">過去の懐かしい名作から最新作まで、特設展示の準備を進めております。出発をお楽しみに！</p>
+        </div>
       </div>
     </section>
 
@@ -194,6 +206,11 @@
       <h2>乗車印帳</h2>
       <div class="section-body">
         <p>これまでの乗車印のデザイン一覧や、記念デジタルスタンプを公開。</p>
+        <div style="background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; margin-top: 15px; text-align: center;">
+          <span style="font-size: 3rem;">📖</span>
+          <p style="font-weight: bold; margin: 10px 0 5px 0;">記念デジタルスタンプ設置駅</p>
+          <p style="font-size: 0.9rem; color: #666; margin: 0;">2周年を記念した限定デジタルスタンプのデザインをここに集約予定です。あなたの乗車記念にコレクションしてください。</p>
+        </div>
       </div>
     </section>
 
@@ -218,7 +235,11 @@
     <section id="philosophy" class="content-section bg-contrast">
       <h2>活動理念</h2>
       <div class="section-body">
-        <p>私たちが大切にしている想いと、3年目への決意表明。</p>
+        <div style="max-width: 600px; margin: 0 auto; text-align: left; line-height: 1.8;">
+          <p style="font-weight: bold; color: #003366; font-size: 1.1rem; border-bottom: 2px solid #d4af37; padding-bottom: 5px;">「繋ぐ、伝える、鉄道の魅力」</p>
+          <p>私たち篠ノ井乗務区は、鉄道が持つワクワク感や、日々の運行を支える乗務員の視点を大切にしながら、手作り広告や写真を通して魅力を発信してきました。</p>
+          <p>3年目に向かう私たちの決意として、「より見やすく、より深く、みんなが楽しめる場所づくり」を掲げ、このGitHub Pagesへの完全移設をはじめとする、新しいコンテンツ展開に全力で出発進行してまいります！</p>
+        </div>
       </div>
     </section>
 
@@ -233,7 +254,7 @@
           </div>
 
           <h3>2周年記念限定スマホ壁紙</h3>
-          <p style="font-size: 0.95rem; margin-bottom: 15px;">感謝を乗せて、次のステージへ。どなたでもご自由にお持ち帰りください！</p>
+          <p style="font-size: 0.95rem; margin-bottom: 20px;">感謝を乗せて、次のステージへ。どなたでもご自由にお持ち帰りください！</p>
           
           <button type="button" id="js-secure-download" class="download-button" style="display: inline-block; background-color: #0066cc; border: none; cursor: pointer; width: auto; min-width: 240px; color: #ffffff; padding: 12px 24px; font-weight: bold; border-radius: 4px; font-size: 1rem; box-shadow: 0 4px 0 #004488;">
             壁紙をダウンロード（PNG）
@@ -287,22 +308,44 @@
         });
       });
 
-      /* --- ② 直リンク防止型・安全ダウンロード機能 --- */
+      /* --- ② 毎回ランダムな一時的URL（Blob URL）を生成してダウンロードする機能 --- */
       const secureDownloadBtn = document.getElementById('js-secure-download');
 
       if (secureDownloadBtn) {
         secureDownloadBtn.addEventListener('click', function () {
-          // ボタンが押されたときだけ、JSの内部で安全に画像を呼び出して自動ダウンロードさせる
-          const imageUrl = 'images/download/wallpaper.png';
-          const fileName = 'shasho_2nd_wallpaper.png';
+          const originalSrc = 'images/download/wallpaper.png';
           
-          const createLink = document.createElement('a');
-          createLink.href = imageUrl;
-          createLink.download = fileName;
-          
-          document.body.appendChild(createLink);
-          createLink.click();
-          document.body.removeChild(createLink);
+          // 1. JS内部で画像をバイナリデータとして非同期で取得（フェッチ）
+          fetch(originalSrc)
+            .then(response => {
+              if (!response.ok) throw new Error('Network response was not ok');
+              return response.blob(); // データを塊（Blob）にする
+            })
+            .then(blob => {
+              // 2. ブラウザのメモリ上に、その時限りのランダムな仮想URLをその都度生成
+              // 生成されるURLの例: blob:https://shinorail.github.io/a1b2c3d4-e5f6-...
+              const randomUrl = window.URL.createObjectURL(blob);
+              
+              // 3. 一時的なリンクを作ってランダムURLから即時ダウンロード実行
+              const createLink = document.createElement('a');
+              createLink.href = randomUrl;
+              createLink.download = 'shasho_2nd_wallpaper.png';
+              
+              document.body.appendChild(createLink);
+              createLink.click();
+              
+              // 4. 使用後は即座に生成したランダムURLと要素をメモリから削除してクリーンアップ
+              document.body.removeChild(createLink);
+              window.URL.revokeObjectURL(randomUrl);
+            })
+            .catch(error => {
+              console.error('Download failed:', error);
+              // 万が一エラーが起きた場合のセーフティネットとして直接ダウンロードへ切り替え
+              const fallbackLink = document.createElement('a');
+              fallbackLink.href = originalSrc;
+              fallbackLink.download = 'shasho_2nd_wallpaper.png';
+              fallbackLink.click();
+            });
         });
       }
 
@@ -319,7 +362,6 @@
 
       gameBtn.addEventListener('click', function () {
         if (!isPlaying) {
-          // ゲームスタート
           isPlaying = true;
           gameResult.textContent = '';
           gameStatus.textContent = '【走行中】まもなく定通駅！タイミングを狙え！';
@@ -328,17 +370,15 @@
           gameInterval = setInterval(() => {
             pointerPos += 4 * direction;
             if (pointerPos >= 96 || pointerPos <= 0) {
-              direction *= -1; // 往復運動
+              direction *= -1;
             }
             gamePointer.style.left = pointerPos + '%';
           }, 20);
         } else {
-          // ブレーキ停止（判定）
           isPlaying = false;
           clearInterval(gameInterval);
           gameBtn.textContent = 'もう一度挑戦';
           
-          // 43% 〜 57% の間（中央の緑枠）にあればジャスト判定
           if (pointerPos >= 43 && pointerPos <= 57) {
             gameStatus.textContent = '🎉【大成功】定時到着！優秀乗務員です！';
             gameResult.textContent = '評価: 素晴らしい運転技術です！';
@@ -361,21 +401,18 @@
         secretModal.classList.add('is-show');
       }
 
-      // 隠しキーボード入力 (数字の "2" を押すと発動)
       document.addEventListener('keydown', function (e) {
         if (e.key === '2') {
           showSecret();
         }
       });
 
-      // スマホ向け：ロゴを5回連続でタップすると発動
       logoTrigger.addEventListener('click', function () {
         clickCount++;
         if (clickCount >= 5) {
           showSecret();
           clickCount = 0;
         }
-        // 3秒後にリセット
         setTimeout(() => { clickCount = 0; }, 3000);
       });
 
