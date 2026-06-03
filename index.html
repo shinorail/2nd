@@ -1,1 +1,112 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活動2周年記念特設サイト | 篠ノ井乗務区</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-logo">篠ノ井乗務区 2nd</div>
+    
+    <button class="hamburger" id="js-hamburger" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="navigation" id="js-nav">
+      <ul class="menu-list">
+        <li><a href="#hero" class="text-blue">TOP</a></li>
+        <li><a href="#news" class="text-red">お知らせ / Train-News</a></li>
+        <li><a href="#ad" class="text-green">手作り広告</a></li>
+        <li><a href="#timeline" class="text-blue">2年のあゆみ</a></li>
+        <li><a href="#stamp" class="text-red">乗車印帳</a></li>
+        <li><a href="#photos" class="text-blue">写真記録</a></li>
+        <li><a href="#philosophy" class="text-blue">活動理念</a></li>
+        <li><a href="#download" class="text-yellow">連携パーツ / 配付企画</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <h1>祝・活動2周年！</h1>
+      <p class="hero-sub">走りはじめて、2年。感謝を乗せて、次のステージへ。</p>
+    </div>
+  </section>
+
+  <section id="news" class="content-section">
+    <h2>お知らせ / Train-News</h2>
+    <p>2周年祭の開催情報や、GitHub Pages完全移設に向けた最新情報をお届けします。</p>
+  </section>
+
+  <section id="ad" class="content-section bg-light">
+    <h2>手作り広告</h2>
+    <p>これまで制作してきた手作り広告の総集編です。</p>
+  </section>
+
+  <section id="timeline" class="content-section">
+    <h2>2年のあゆみ</h2>
+    <div class="timeline-box">
+      <p><strong>2024年6月</strong>：公式Xアカウント開設</p>
+      <p><strong>2024年10月</strong>：旧公式サイトオープン</p>
+      <p><strong>2025年7月</strong>：新公式サイト（Google Sites）開設</p>
+      <p><strong>2025年8月</strong>：フォロワー数1,250人達成。各SNS・ラボ開設</p>
+      <p><strong>2026年1月</strong>：GitHub Pagesへのサイト移設を開始</p>
+      <p><strong>2026年6月</strong>：活動2周年記念祭を開催！</p>
+    </div>
+  </section>
+
+  <section id="stamp" class="content-section bg-light">
+    <h2>乗車印帳</h2>
+    <p>これまでの乗車印のデザイン一覧や、記念デジタルスタンプを公開。</p>
+  </section>
+
+  <section id="photos" class="content-section">
+    <h2>写真記録</h2>
+    <p>沿線で記録してきた、こだわりの鉄道写真ギャラリー。</p>
+  </section>
+
+  <section id="philosophy" class="content-section bg-light">
+    <h2>活動理念</h2>
+    <p>私たちが大切にしている想いと、3年目への決意表明。</p>
+  </section>
+
+  <section id="download" class="content-section">
+    <h2>2周年記念 配布企画</h2>
+    <div class="download-card">
+      <h3>限定デザインスマホ壁紙</h3>
+      <p>ここから記念壁紙をダウンロードできます。</p>
+      <a href="images/download/wallpaper.png" download="shasho_2nd_wallpaper.png" class="btn">ダウンロード</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 篠ノ井乗務区 All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburger = document.getElementById('js-hamburger');
+      const nav = document.getElementById('js-nav');
+      const links = document.querySelectorAll('.navigation a');
+
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+      });
+
+      links.forEach(link => {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('is-active');
+          nav.classList.remove('is-active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
