@@ -146,7 +146,8 @@
         <li><a href="#ad" class="nav-item nav-ad">手作り広告</a></li>
         <li><a href="#timeline" class="nav-item nav-timeline">2年のあゆみ</a></li>
         <li><a href="#stamp" class="nav-item nav-stamp">乗車印帳</a></li>
-        <li><a href="#game" class="nav-item nav-photos">運転士体験ゲーム</a></li> <li><a href="#philosophy" class="nav-item nav-philosophy">活動理念</a></li>
+        <li><a href="#game" class="nav-item nav-photos">運転士体験ゲーム</a></li>
+        <li><a href="#philosophy" class="nav-item nav-philosophy">活動理念</a></li>
         <li><a href="#download" class="nav-item nav-download">連携パーツ / 配布企画</a></li>
       </ul>
     </nav>
@@ -221,7 +222,7 @@
       </div>
     </section>
 
-<section id="download" class="content-section">
+    <section id="download" class="content-section">
       <h2>2周年記念 配布企画</h2>
       <div class="section-body">
         <div class="download-card" style="text-align: center;">
@@ -232,13 +233,11 @@
           </div>
 
           <h3>2周年記念限定スマホ壁紙</h3>
-          <p style="font-size: 0.95rem; margin-bottom: 5px;">感謝を乗せて、次のステージへ。</p>
-          <p style="font-size: 0.85rem; color: #d93025; font-weight: bold; margin-top: 0;">※公式Xの案内、または当サイト内からのアクセス時のみダウンロード可能です。</p>
+          <p style="font-size: 0.95rem; margin-bottom: 15px;">感謝を乗せて、次のステージへ。どなたでもご自由にお持ち帰りください！</p>
           
-          <a href="images/download/wallpaper.png" download="shasho_2nd_wallpaper.png" id="js-download-btn" class="download-button" style="opacity: 0.4; pointer-events: none; background-color: #555; display: inline-block;">
-            アクセス認証中...
-          </a>
-          <div id="js-download-msg" style="margin-top: 15px; font-weight: bold; font-size: 1rem;"></div>
+          <button type="button" id="js-secure-download" class="download-button" style="display: inline-block; background-color: #0066cc; border: none; cursor: pointer; width: auto; min-width: 240px; color: #ffffff; padding: 12px 24px; font-weight: bold; border-radius: 4px; font-size: 1rem; box-shadow: 0 4px 0 #004488;">
+            壁紙をダウンロード（PNG）
+          </button>
         </div>
       </div>
     </section>
@@ -288,29 +287,23 @@
         });
       });
 
-      /* --- ② URLパラメータ認証＆違法防止 --- */
-      const downloadBtn = document.getElementById('js-download-btn');
-      const downloadMsg = document.getElementById('js-download-msg');
-      
-      const urlParams = new URLSearchParams(window.location.search);
-      const isAuth = (urlParams.get('download') === 'auth2nd');
-      const referrer = document.referrer;
-      
-      // 拒否したいブラックリスト（違法リンク元など）のチェック
-      const isIllegal = referrer.includes('illegal-copy-site.com') || referrer.includes('bad-loader-net');
+      /* --- ② 直リンク防止型・安全ダウンロード機能 --- */
+      const secureDownloadBtn = document.getElementById('js-secure-download');
 
-      if (isAuth && !isIllegal) {
-        downloadBtn.style.opacity = '1';
-        downloadBtn.style.pointerEvents = 'auto';
-        downloadBtn.style.backgroundColor = '#0066cc';
-        downloadBtn.textContent = '壁紙をダウンロード（PNG）';
-        downloadMsg.textContent = '✓ 公式ルート認証成功。保存してご利用ください！';
-        downloadMsg.style.color = '#137333';
-      } else {
-        downloadBtn.textContent = 'ロックされています';
-        downloadBtn.style.backgroundColor = '#555';
-        downloadMsg.textContent = '❌ エラー: 公式X（?download=auth2nd付URL）から再度アクセスしてください。直接の違法リンクからはダウンロードできません。';
-        downloadMsg.style.color = '#d93025';
+      if (secureDownloadBtn) {
+        secureDownloadBtn.addEventListener('click', function () {
+          // ボタンが押されたときだけ、JSの内部で安全に画像を呼び出して自動ダウンロードさせる
+          const imageUrl = 'images/download/wallpaper.png';
+          const fileName = 'shasho_2nd_wallpaper.png';
+          
+          const createLink = document.createElement('a');
+          createLink.href = imageUrl;
+          createLink.download = fileName;
+          
+          document.body.appendChild(createLink);
+          createLink.click();
+          document.body.removeChild(createLink);
+        });
       }
 
       /* --- ③ 出発進行！ミニゲーム --- */
