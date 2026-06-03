@@ -5,6 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>活動2周年記念特設サイト | 篠ノ井乗務区</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* --- 追加機能のユニバーサル・デザインCSS --- */
+    .feature-box {
+      background-color: #ffffff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    /* ミニゲーム用 */
+    .game-screen {
+      background-color: #111;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .game-meter-container {
+      width: 100%;
+      max-width: 300px;
+      background: #333;
+      height: 20px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+    .game-pointer {
+      width: 10px;
+      height: 100%;
+      background: #ff0000;
+      position: absolute;
+      left: 0%;
+      transition: left 0.05s linear;
+    }
+    .game-target {
+      width: 40px;
+      height: 100%;
+      background: #00ff00;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .game-btn {
+      background-color: #d4af37;
+      color: #111;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #aa8c2c;
+    }
+    .game-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #aa8c2c;
+    }
+
+    /* 隠し要素用アナウンス */
+    .hidden-hint {
+      background: #fff9db;
+      border: 1px dashed #f57f17;
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    
+    /* モーダル（隠しページポップアップ） */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.is-show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      border: 4px solid #d4af37;
+    }
+    .close-modal-btn {
+      background: #333;
+      color: #fff;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 4px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
@@ -28,8 +146,7 @@
         <li><a href="#ad" class="nav-item nav-ad">手作り広告</a></li>
         <li><a href="#timeline" class="nav-item nav-timeline">2年のあゆみ</a></li>
         <li><a href="#stamp" class="nav-item nav-stamp">乗車印帳</a></li>
-        <li><a href="#photos" class="nav-item nav-photos">写真記録</a></li>
-        <li><a href="#philosophy" class="nav-item nav-philosophy">活動理念</a></li>
+        <li><a href="#game" class="nav-item nav-photos">運転士体験ゲーム</a></li> <li><a href="#philosophy" class="nav-item nav-philosophy">活動理念</a></li>
         <li><a href="#download" class="nav-item nav-download">連携パーツ / 配布企画</a></li>
       </ul>
     </nav>
@@ -40,6 +157,7 @@
       <div class="hero-content">
         <h1>祝・活動2周年</h1>
         <p class="hero-sub">走りはじめて、2年。感謝を乗せて、次のステージへ。</p>
+        <div class="hidden-hint">💡 ページ上のどこかでキーボードの【 2 】を押すか、ロゴを長押し（5回タップ）すると…？</div>
       </div>
     </section>
 
@@ -78,10 +196,21 @@
       </div>
     </section>
 
-    <section id="photos" class="content-section">
-      <h2>写真記録</h2>
+    <section id="game" class="content-section">
+      <h2>出発進行！ジャストストップゲーム</h2>
       <div class="section-body">
-        <p>沿線で記録してきた、こだわりの鉄道写真ギャラリー。</p>
+        <p>緑色のターゲットゾーンを狙って、タイミングよくブレーキハンドル（ボタン）を引こう！</p>
+        <div class="feature-box">
+          <div class="game-screen">
+            <div id="js-game-status" style="font-weight: bold; font-size: 1.2rem;">【待機中】ボタンを押して出発！</div>
+            <div class="game-meter-container">
+              <div class="game-target"></div>
+              <div class="game-pointer" id="js-game-pointer"></div>
+            </div>
+            <div id="js-game-result" style="color: #ffd700; height: 24px;"></div>
+          </div>
+          <button type="button" class="game-btn" id="js-game-btn">出発進行！</button>
+        </div>
       </div>
     </section>
 
@@ -97,22 +226,40 @@
       <div class="section-body">
         <div class="download-card">
           <h3>限定デザインスマホ壁紙</h3>
-          <p>2周年を記念した特製壁紙をこちらからダウンロードいただけます。</p>
-          <a href="images/download/wallpaper.png" download="shasho_2nd_wallpaper.png" class="download-button">壁紙をダウンロード（PNG）</a>
+          <p style="font-size: 0.9rem; color: #d93025; font-weight: bold;">※公式Xの案内、または当サイト内からのアクセス時のみダウンロード可能です。</p>
+          
+          <a href="images/download/wallpaper.png" download="shasho_2nd_wallpaper.png" id="js-download-btn" class="download-button" style="opacity: 0.4; pointer-events: none; background-color: #555;">
+            アクセス認証中...
+          </a>
+          <div id="js-download-msg" style="margin-top: 15px; font-weight: bold; font-size: 1rem;"></div>
         </div>
       </div>
     </section>
   </main>
 
-<footer class="site-footer">
-  <p style="margin-bottom: 15px;">
-    <a href="legal.html" style="color: #ccc; text-decoration: underline; font-size: 0.85rem;">利用規約・プライバシーポリシー</a>
-  </p>
-  <p>&copy; 2026 篠ノ井乗務区 All Rights Reserved.</p>
-</footer>
+  <div class="modal-overlay" id="js-secret-modal">
+    <div class="modal-content">
+      <h2 style="color: #d4af37; margin-top: 0;">🎉 秘密の隠し区エリアへようこそ！</h2>
+      <p>見つけてくれてありがとうございます！2周年を記念した裏設定資料や、開発初期の旧サイトお蔵入りデザイン原案をここに公開します。</p>
+      <div style="background: #f4f6f9; padding: 15px; border-radius: 4px; text-align: left; font-size: 0.95rem;">
+        <strong>【3年目の運行計画（極秘）】</strong><br>
+        ・GitHub Pagesへの完全移行を今夏までに完了予定！<br>
+        ・沿線掲示板の拡張システムをさらに強化。
+      </div>
+      <button class="close-modal-btn" id="js-close-modal">閉じて戻る</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p style="margin-bottom: 15px;">
+      <a href="legal.html" style="color: #ccc; text-decoration: underline; font-size: 0.85rem;">利用規約・プライバシーポリシー</a>
+    </p>
+    <p>&copy; 2026 篠ノ井乗務区 All Rights Reserved.</p>
+  </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      /* --- ① ハンバーガーメニュー --- */
       const hamburger = document.getElementById('js-hamburger');
       const nav = document.getElementById('js-nav');
       const links = document.querySelectorAll('.navigation-menu a');
@@ -132,6 +279,108 @@
           hamburger.setAttribute('aria-expanded', 'false');
           nav.setAttribute('aria-hidden', 'true');
         });
+      });
+
+      /* --- ② URLパラメータ認証＆違法防止 --- */
+      const downloadBtn = document.getElementById('js-download-btn');
+      const downloadMsg = document.getElementById('js-download-msg');
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const isAuth = (urlParams.get('download') === 'auth2nd');
+      const referrer = document.referrer;
+      
+      // 拒否したいブラックリスト（違法リンク元など）のチェック
+      const isIllegal = referrer.includes('illegal-copy-site.com') || referrer.includes('bad-loader-net');
+
+      if (isAuth && !isIllegal) {
+        downloadBtn.style.opacity = '1';
+        downloadBtn.style.pointerEvents = 'auto';
+        downloadBtn.style.backgroundColor = '#0066cc';
+        downloadBtn.textContent = '壁紙をダウンロード（PNG）';
+        downloadMsg.textContent = '✓ 公式ルート認証成功。保存してご利用ください！';
+        downloadMsg.style.color = '#137333';
+      } else {
+        downloadBtn.textContent = 'ロックされています';
+        downloadBtn.style.backgroundColor = '#555';
+        downloadMsg.textContent = '❌ エラー: 公式X（?download=auth2nd付URL）から再度アクセスしてください。直接の違法リンクからはダウンロードできません。';
+        downloadMsg.style.color = '#d93025';
+      }
+
+      /* --- ③ 出発進行！ミニゲーム --- */
+      const gameBtn = document.getElementById('js-game-btn');
+      const gamePointer = document.getElementById('js-game-pointer');
+      const gameStatus = document.getElementById('js-game-status');
+      const gameResult = document.getElementById('js-game-result');
+      
+      let gameInterval = null;
+      let pointerPos = 0;
+      let direction = 1;
+      let isPlaying = false;
+
+      gameBtn.addEventListener('click', function () {
+        if (!isPlaying) {
+          // ゲームスタート
+          isPlaying = true;
+          gameResult.textContent = '';
+          gameStatus.textContent = '【走行中】まもなく定通駅！タイミングを狙え！';
+          gameBtn.textContent = '制動（ブレーキ）！！';
+          
+          gameInterval = setInterval(() => {
+            pointerPos += 4 * direction;
+            if (pointerPos >= 96 || pointerPos <= 0) {
+              direction *= -1; // 往復運動
+            }
+            gamePointer.style.left = pointerPos + '%';
+          }, 20);
+        } else {
+          // ブレーキ停止（判定）
+          isPlaying = false;
+          clearInterval(gameInterval);
+          gameBtn.textContent = 'もう一度挑戦';
+          
+          // 43% 〜 57% の間（中央の緑枠）にあればジャスト判定
+          if (pointerPos >= 43 && pointerPos <= 57) {
+            gameStatus.textContent = '🎉【大成功】定時到着！優秀乗務員です！';
+            gameResult.textContent = '評価: 素晴らしい運転技術です！';
+            gameResult.style.color = '#137333';
+          } else {
+            gameStatus.textContent = '❌【過走】ブレーキタイミングがズレました。';
+            gameResult.textContent = '評価: 次回はもっと引きつけてみよう！';
+            gameResult.style.color = '#d93025';
+          }
+        }
+      });
+
+      /* --- ④ 隠しページ（コマンド/長押し）のギミック --- */
+      const secretModal = document.getElementById('js-secret-modal');
+      const closeModal = document.getElementById('js-close-modal');
+      const logoTrigger = document.querySelector('.header-logo');
+      let clickCount = 0;
+
+      function showSecret() {
+        secretModal.classList.add('is-show');
+      }
+
+      // 隠しキーボード入力 (数字の "2" を押すと発動)
+      document.addEventListener('keydown', function (e) {
+        if (e.key === '2') {
+          showSecret();
+        }
+      });
+
+      // スマホ向け：ロゴを5回連続でタップすると発動
+      logoTrigger.addEventListener('click', function () {
+        clickCount++;
+        if (clickCount >= 5) {
+          showSecret();
+          clickCount = 0;
+        }
+        // 3秒後にリセット
+        setTimeout(() => { clickCount = 0; }, 3000);
+      });
+
+      closeModal.addEventListener('click', function () {
+        secretModal.classList.remove('is-show');
       });
     });
   </script>
