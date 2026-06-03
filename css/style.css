@@ -1,0 +1,183 @@
+/* 全体のリセットと基本設定 */
+html {
+  scroll-behavior: smooth; /* スムーズスクロールを有効化 */
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+}
+
+/* ヘッダー */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #00479e; /* 篠ノ井ブルー */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+.header-logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* ハンバーガーボタン */
+.hamburger {
+  position: relative;
+  width: 30px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.hamburger span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 9px; }
+.hamburger span:nth-child(3) { top: 18px; }
+
+/* ボタンがアクティブな時（×印） */
+.hamburger.is-active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger.is-active span:nth-child(2) { opacity: 0; }
+.hamburger.is-active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* 全画面メニュー */
+.navigation {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(245, 247, 250, 0.98);
+  transition: all 0.3s ease-in-out;
+  z-index: 1050;
+}
+.navigation.is-active {
+  right: 0;
+}
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-list li {
+  margin: 15px 0;
+}
+.menu-list li a {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* スクリショのカラー再現 */
+.text-blue { color: #1a0dab; }
+.text-red { color: #d93025; }
+.text-green { color: #137333; }
+.text-yellow { color: #b08500; }
+
+/* メインビジュアル */
+.hero-section {
+  padding-top: 60px; /* ヘッダーの高さ分下げる */
+  height: 60vh;
+  background-color: #003371; /* 暗めのブルー（背景画像を入れるとGOOD） */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ffd700; /* お祝いのゴールド */
+}
+
+/* 各コンテンツセクション */
+.content-section {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.bg-light {
+  background-color: #fff;
+  max-width: 100%;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+}
+.content-section h2 {
+  font-size: 1.8rem;
+  color: #00479e;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #00479e;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* タイムラインの簡易装飾 */
+.timeline-box {
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+  border-left: 3px solid #00479e;
+  padding-left: 20px;
+}
+.timeline-box p {
+  margin: 20px 0;
+}
+
+/* 配布カード・ボタン */
+.download-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: inline-block;
+}
+.btn {
+  display: inline-block;
+  background-color: #b08500;
+  color: #fff;
+  padding: 10px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: background 0.2s;
+}
+.btn:hover {
+  background-color: #906d00;
+}
+
+/* フッター */
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
